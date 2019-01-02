@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # this folder is not mapped to the host pc
+      - .:/app # this folder is mapped to the host pc
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules # this folder is not mapped to the host pc
+      - .:/app # this folder is mapped to the host pc
+    command: ["npm", "run", "test"]
+
+
+  
